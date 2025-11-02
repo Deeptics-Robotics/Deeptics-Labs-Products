@@ -1,0 +1,5 @@
+controllers:
+- id: Conveyor_LineA
+  path: assets/controllers/conveyor_lineA.py
+  family: conveyor
+  description: Speed/acceleration controller for Conveyor Line A

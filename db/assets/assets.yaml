@@ -1,0 +1,71 @@
+
+- id: BASE-OMNI-2118-DA
+  family: base
+  model_name: OmniBase+DualArm
+  version: v1
+  status: beta
+  dof: 16
+  payload_kg: 10.0
+  mass_kg: 36.0
+  size_mm: {L: 680, W: 600, H: 1250}
+  sensors:
+    - {type: lidar, count: 1, notes: "270 deg front"}
+    - {type: camera, count: 2, notes: "stereo RGB"}
+    - {type: imu, count: 1, notes: "9-axis"}
+  compute: {controller: Edge-CTRL-B, aux: GPU-Mini}
+  actuators: {type: BLDC+servo, count: 16}
+  power: {battery: BT-L, bms: BMS-L}
+  default_controllers: [SLAM_3D, Nav2D_PathFollow, GraspPlanner_RRT, Balance_Composable]
+  presets: {motion: "omni-dualarm", safety: "industrial"}
+  sdk_support: {studio: true, api: true}
+  posml_package: [POSML-BASE-2118-DA]
+  marketplace: {availability: preview, sku: DTX-BASE-2118-DA}
+  notes: "Omnidirectional base with synchronized dual arms for factory tasks."
+  payload_range_kg: {min: 0.0, max: 12.0}
+  torque_spec:
+    class: BLDC_Wheel_M+servo_M
+    per_axis:
+      - {axis: omni_wheel, peak_Nm: 4.0, cont_Nm: 2.0, count: 4, notes: "roller wheels"}
+      - {axis: shoulder, peak_Nm: 20.0, cont_Nm: 10.0, count: 2, notes: "dual arms"}
+      - {axis: elbow, peak_Nm: 12.0, cont_Nm: 6.0, count: 2}
+      - {axis: wrist, peak_Nm: 5.0, cont_Nm: 2.5, count: 2}
+  thermal_envelope:
+    ambient_C: [-5, 45]
+    duty_cycle_peak: "60s on / 120s off at peak"
+    duty_cycle_cont: "continuous at cont torque"
+    cooling: active-fan
+    cutoff_C: {motor: 95, controller: 100, battery: 65}
+    ip_rating: IP54
+
+- id: CONV-LINE-A
+  family: conveyor
+  model_name: Conveyor Line A
+  version: v1
+  status: beta
+  dof: 1
+  payload_kg: 50.0
+  mass_kg: 80.0
+  size_mm: {L: 10800, W: 800, H: 900}
+  sensors: [{type: ir, count: 2, notes: "item detect"}]
+  compute: {controller: Edge-CTRL-A, aux: ""}
+  actuators: {type: BLDC, count: 1}
+  power: {battery: "N/A", bms: "N/A"}
+  default_controllers: [Conveyor_LineA]
+  presets: {motion: "belt", safety: "industrial"}
+  sdk_support: {studio: true, api: true}
+  posml_package: [POSML-CONV-LINE-A]
+  marketplace: {availability: preview, sku: DTX-CONV-LINE-A}
+  notes: "Industrial conveyor for factory scenes."
+  payload_range_kg: {min: 0.0, max: 80.0}
+  torque_spec:
+    class: BLDC_BeltDrive
+    per_axis:
+      - {axis: rotor, peak_Nm: 40.0, cont_Nm: 18.0, count: 1, notes: "belt drive"}
+  thermal_envelope:
+    ambient_C: [0, 50]
+    duty_cycle_peak: "continuous under 0.9 speed"
+    duty_cycle_cont: "continuous at cont torque"
+    cooling: passive
+    cutoff_C: {motor: 90, controller: 95, battery: 0}
+    ip_rating: IP54
+

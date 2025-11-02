@@ -1,0 +1,26 @@
+id: PROD-OMNI-DA-OV1
+name: OmniBase+DualArm - Factory Conveyor Overview
+scene_id: SCN-FACT-DA-001
+assets:
+  - BASE-OMNI-2118-DA
+  - CONV-LINE-A
+controllers:
+  - Balance_Composable
+  - Conveyor_LineA
+  - Nav2D_PathFollow
+sensors:
+  - {type: camera, count: 2, notes: "stereo RGB"}
+  - {type: imu, count: 1, notes: "9-axis"}
+  - {type: lidar, count: 1, notes: "270 deg"}
+specs:
+  dof: 16
+  payload_kg: 10
+  cooling: active-fan
+  ip_rating: IP54
+defaults:
+  conveyor_speed: 0.9
+  conveyor_accel: 0.6
+  gravity_mps2: 9.81
+media:
+  studio_image: docs/media/studio_omnibase_dualarm.png
+  overview_image: docs/media/product_overview_omnibase_dualarm.png

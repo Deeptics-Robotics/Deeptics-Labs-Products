@@ -1,0 +1,4 @@
+id: Conveyor_LineA
+inputs: [sensor_ir, speed_cmd, accel_cmd]
+outputs: [belt_pwm]
+params: { speed: 0.9, acceleration: 0.6 }

@@ -1,0 +1,21 @@
+id: SCN-FACT-DA-001
+name: Factory Conveyor - OmniBase+DualArm
+version: v1
+description: >
+  Factory-floor simulation scene for OmniBase+DualArm interacting with a conveyor system.
+  Includes stereo RGB camera, 9-axis IMU, balance control and conveyor control.
+environment:
+  type: factory_floor
+  gravity_mps2: 9.81
+assets_required:
+  - BASE-OMNI-2118-DA
+  - CONV-LINE-A
+controllers:
+  - Balance_Composable
+  - Conveyor_LineA
+parameters:
+  conveyor:
+    speed: 0.9
+    acceleration: 0.6
+media:
+  hero_image: docs/media/factory_dualarm_sim.png
